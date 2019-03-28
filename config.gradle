@@ -29,6 +29,7 @@ ext {
             "okhttp"                   :'com.squareup.okhttp3:okhttp:3.14.0',
             "adapter-rxjava2"          :"com.squareup.retrofit2:adapter-rxjava2:2.5.0",
             "converter-fastjson-android":"org.ligboy.retrofit2:converter-fastjson-android:2.1.0",
+            "fastjson":'com.alibaba:fastjson:1.2.56',
             //动态切换域名库
             "retrofit-url-manager"      :"me.jessyan:retrofit-url-manager:1.4.0",
             //日志拦截器
@@ -60,7 +61,8 @@ ext {
             "butterknife"              :'com.jakewharton:butterknife:10.1.0',
             "butterknife-compiler"     : 'com.jakewharton:butterknife-compiler:10.1.0',
             //eventBus
-            "eventbus"                 :"org.greenrobot:eventbus:3.1.1"
+            "eventbus"                 :"org.greenrobot:eventbus:3.1.1",
+            "greendao"                 :"org.greenrobot:greendao:3.2.2"
     ]
 
 

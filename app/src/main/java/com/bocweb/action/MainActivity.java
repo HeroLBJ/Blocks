@@ -4,11 +4,18 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.njh.base.ui.act.BaseAct;
+import com.weavey.loading.lib.LoadingLayout;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author niejiahuan
  */
 public class MainActivity extends BaseAct {
+
+    @BindView(R.id.loading_view)
+    LoadingLayout loadingView;
 
     @Override
     public void initBus() {
@@ -17,7 +24,8 @@ public class MainActivity extends BaseAct {
 
     @Override
     public void initData(Bundle savedInstanceState) {
-
+        ButterKnife.bind(this);
+        loadingView.setStatus(LoadingLayout.Empty);
     }
 
     @Override
@@ -54,4 +62,5 @@ public class MainActivity extends BaseAct {
     public void onError(int code, String msg, String tag) {
 
     }
+
 }

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.alibaba.arouter'
 
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -41,19 +42,6 @@ android {
     buildTypes {
         //正式版本
         release {
-            minifyEnabled false//不启用混淆
-            versionNameSuffix "-debug"
-            //是否zip对齐
-            zipAlignEnabled false
-            shrinkResources false
-            //混淆配置文件
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //签名配置
-            signingConfig signingConfigs.release
-        }
-        //测试版本
-        debug {
-            minifyEnabled false//不启用混淆
             //混淆开关
             minifyEnabled true
             //是否支持本地化整理
@@ -67,7 +55,19 @@ android {
             //混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //签名配置
-            signingConfig signingConfigs.releaseConfig
+            signingConfig signingConfigs.release
+        }
+        //测试版本
+        debug {
+            minifyEnabled false//不启用混淆
+            versionNameSuffix "-debug"
+            //是否zip对齐
+            zipAlignEnabled false
+            shrinkResources false
+            //混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名配置
+            signingConfig signingConfigs.debug
 
         }
         pre.initWith(release)//拷贝了 release 这一构建类型的所有变量
@@ -94,8 +94,9 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     if (rootProject.ext.isBuildModule) {
-
+        implementation project(':home_module')
     } else {
         implementation project(':lib_common')
     }
+    implementation 'com.alibaba:fastjson:1.2.56'
 }

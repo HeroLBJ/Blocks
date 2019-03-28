@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -37,11 +37,19 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+    greendao {
+        schemaVersion 1//对应当前数据库版本
+        daoPackage 'com.njh.common.db.dao'//由GreenDao自动生成代码所在的包名，默认的是在项目包下面新建一个gen。
+        targetGenDir 'src/main/java'// 设置自动生成代码的目录。
+    }
     resourcePrefix "common_" //给 Module 内的资源名增加前缀, 避免资源名冲突
+
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':lib_base')
     api rootProject.ext.dependencies["eventbus"]
+    api rootProject.ext.dependencies["greendao"]
+    implementation project(':lib_network')
 }

@@ -1,9 +1,11 @@
 package com.njh.network.api;
 
 import android.content.Context;
-import android.util.ArrayMap;
 
 import com.njh.network.utils.RetrofitUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by xdj on 16/3/14.
@@ -14,11 +16,12 @@ public class ServiceManager {
     public static void initServiceManager(Context context){
         mContext=context;
     }
-    private static final ArrayMap<Class, Object> mServiceMap = new ArrayMap<>();
+    private static final Map<Class, Object> mServiceMap = new HashMap<>();
 
     public static void clearMap(){
         mServiceMap.clear();
     }
+
     public static <T> T create(Class<T> serviceClass) {
         Object service = mServiceMap.get(serviceClass);
         if (service == null) {

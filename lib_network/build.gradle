@@ -51,5 +51,6 @@ dependencies {
     api rootProject.ext.dependencies["retrofit-url-manager"]
     //日志拦截器
     implementation rootProject.ext.dependencies["logging-interceptor"]
+    api rootProject.ext.dependencies["fastjson"]
     implementation project(':lib_base')
 }
