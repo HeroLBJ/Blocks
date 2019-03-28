@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bocweb.action">
+    <!--联网权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <!--usesCleartextTraffic 处理9.0开启支持HTTP协议-->
     <application
