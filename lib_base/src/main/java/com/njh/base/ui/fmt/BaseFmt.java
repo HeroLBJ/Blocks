@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.njh.base.listener.LifeCycleListener;
 import com.njh.base.ui.view.BaseView;
 import com.trello.rxlifecycle3.android.FragmentEvent;
 import com.trello.rxlifecycle3.components.support.RxFragment;
@@ -28,7 +29,7 @@ public abstract class BaseFmt extends RxFragment implements BaseView {
 
     protected Context mContext;
     protected View mContentView;
-
+    protected OperateFmtCompatDelegate compatDelegate;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -50,6 +51,7 @@ public abstract class BaseFmt extends RxFragment implements BaseView {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        compatDelegate=new OperateFmtCompatDelegate(this);
         initStatusBar();
     }
 
@@ -68,6 +70,14 @@ public abstract class BaseFmt extends RxFragment implements BaseView {
                     .navigationBarDarkIcon(true, 0.2f)
                     .init();
         }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (hidden) {
+            immersionBar.init();
+        }
+        super.onHiddenChanged(hidden);
     }
 
     public Observable click(View view) {
@@ -103,5 +113,42 @@ public abstract class BaseFmt extends RxFragment implements BaseView {
      */
     protected <T extends Object> Observable<T> bindUntil(Observable<T> observable, FragmentEvent event) {
         return (Observable<T>) observable.compose(bindUntilEvent(event));
+    }
+
+    LifeCycleListener mListener;
+
+    public void setOnLifeCycleListener(LifeCycleListener lifeCycleListener) {
+        this.mListener = lifeCycleListener;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mListener != null) {
+            mListener.onStart();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mListener != null) {
+            mListener.onResume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mListener != null) {
+            mListener.onPause();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mListener != null) {
+            mListener.onStop();
+        }
     }
 }

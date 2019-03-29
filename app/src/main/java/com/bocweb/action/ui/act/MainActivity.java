@@ -1,8 +1,9 @@
-package com.bocweb.action;
+package com.bocweb.action.ui.act;
 
 import android.content.Context;
 import android.os.Bundle;
 
+import com.bocweb.action.R;
 import com.njh.base.ui.act.BaseAct;
 import com.weavey.loading.lib.LoadingLayout;
 

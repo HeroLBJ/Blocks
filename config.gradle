@@ -62,7 +62,9 @@ ext {
             "butterknife-compiler"     : 'com.jakewharton:butterknife-compiler:10.1.0',
             //eventBus
             "eventbus"                 :"org.greenrobot:eventbus:3.1.1",
-            "greendao"                 :"org.greenrobot:greendao:3.2.2"
+            "greendao"                 :"org.greenrobot:greendao:3.2.2",
+            "androidlifecycle"         :"com.github.ykrank:androidlifecycle:0.4.0"
+
     ]
 
 

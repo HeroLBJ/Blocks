@@ -39,11 +39,7 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="640"/>
-
-        <activity android:name=".Main2Activity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.act.MainActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

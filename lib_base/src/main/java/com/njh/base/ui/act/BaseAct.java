@@ -2,28 +2,27 @@ package com.njh.base.ui.act;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 
 import com.gyf.barlibrary.ImmersionBar;
-import com.jakewharton.rxbinding2.view.RxView;
 import com.njh.base.ui.view.BaseView;
-import com.trello.rxlifecycle3.android.ActivityEvent;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @author niejiahuan
  */
 public abstract class BaseAct extends RxAppCompatActivity implements BaseView {
     protected ImmersionBar immersionBar;
-
+    protected Unbinder unBinder;
+    protected OperateActCompatDelegate operateCompatDelegate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        operateCompatDelegate=new OperateActCompatDelegate(this);
+        unBinder = ButterKnife.bind(this);
         initStatusBar();
     }
 
@@ -46,39 +45,11 @@ public abstract class BaseAct extends RxAppCompatActivity implements BaseView {
                     .init();
         }
     }
-    public Observable click(View view) {
-        return throttleFirst(RxView.clicks(view));
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (null!=unBinder){
+            unBinder.unbind();
+        }
     }
-    /**
-     * 防抖动，防止快速点击
-     *
-     * @param observable
-     * @param <T>
-     * @return
-     */
-    protected <T extends Object> Observable<T> throttleFirst(Observable<T> observable) {
-        return observable.throttleFirst(100, TimeUnit.MILLISECONDS);
-    }
-
-    /**
-     * 将事件与生命周期绑定
-     *
-     * @param observable
-     * @return
-     */
-    protected <T extends Object> Observable<T> bindLife(Observable<T> observable) {
-        return (Observable<T>) observable.compose(bindToLifecycle());
-    }
-
-    /**
-     * 指定事件在哪个生命周期结束
-     *
-     * @param observable
-     * @param event      生命周期
-     * @return
-     */
-    protected <T extends Object> Observable<T> bindUntil(Observable<T> observable, ActivityEvent event) {
-        return (Observable<T>) observable.compose(bindUntilEvent(event));
-    }
-
 }

@@ -66,4 +66,5 @@ dependencies {
     //界面状态
     api rootProject.ext.dependencies["loadinglayout"]
     api rootProject.ext.dependencies["butterknife"]
+    api rootProject.ext.dependencies["androidlifecycle"]
 }
