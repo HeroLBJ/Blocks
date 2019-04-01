@@ -67,4 +67,6 @@ dependencies {
     api rootProject.ext.dependencies["loadinglayout"]
     api rootProject.ext.dependencies["butterknife"]
     api rootProject.ext.dependencies["androidlifecycle"]
+    //日志
+    api rootProject.ext.dependencies["klog"]
 }

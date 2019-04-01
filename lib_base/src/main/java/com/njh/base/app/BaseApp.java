@@ -6,6 +6,7 @@ import android.content.Context;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.njh.base.BuildConfig;
 import com.njh.base.app.modeule.IAppLife;
+import com.socks.library.KLog;
 
 import androidx.multidex.MultiDex;
 import me.jessyan.autosize.AutoSize;
@@ -58,6 +59,8 @@ public class BaseApp extends Application implements IAppLife {
         instance=this;
         initARouter();
         initAutoSize();
+        //日志初始化
+        KLog.init(BuildConfig.IS_DEBUG);
     }
 
     @Override

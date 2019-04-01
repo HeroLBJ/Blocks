@@ -63,7 +63,10 @@ ext {
             //eventBus
             "eventbus"                 :"org.greenrobot:eventbus:3.1.1",
             "greendao"                 :"org.greenrobot:greendao:3.2.2",
-            "androidlifecycle"         :"com.github.ykrank:androidlifecycle:0.4.0"
+            "androidlifecycle"         :"com.github.ykrank:androidlifecycle:0.4.0",
+            //日志显示和日志收集
+            "klog"                     :"com.github.zhaokaiqiang.klog:library:1.6.0"
+
 
     ]
 
