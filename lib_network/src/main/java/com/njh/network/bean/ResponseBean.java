@@ -35,7 +35,7 @@ public class ResponseBean<T> {
      * @return
      */
     public boolean isSuccess() {
-        return code == 200 ? true : false;
+        return code == 0 ? true : false;
     }
 
     @Override

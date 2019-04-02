@@ -56,8 +56,6 @@ public abstract class BaseFluxActivity<STORE extends Store,CREATER extends Actio
         }
     }
 
-
-
     /**
      * store 的订阅者方法,用于store.emitStoreChange的响应
      * @param event
@@ -159,5 +157,14 @@ public abstract class BaseFluxActivity<STORE extends Store,CREATER extends Actio
         }
         return null;
 
+    }
+
+    @Override
+    public void onError(int code, String msg, String tag) {
+        if (code==114){
+           //TODO
+        }else {
+            showToast(msg);
+        }
     }
 }

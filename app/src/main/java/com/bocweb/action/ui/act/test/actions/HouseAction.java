@@ -24,6 +24,6 @@ public class HouseAction extends ActionsCreator {
      */
     public void getHouseSearch(BaseFluxActivity act, String param) {
         reqDate(ServiceManager.create(ApiService.class).get(param),
-                act,true, ReqTag.REQ_TAG_GET_HOUSE_SEARCH);
+                act,false, ReqTag.REQ_TAG_GET_HOUSE_SEARCH);
     }
 }

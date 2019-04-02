@@ -3,6 +3,7 @@ package com.njh.base.ui.act;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.view.RxView;
+import com.njh.base.utils.Toastor;
 import com.trello.rxlifecycle3.android.ActivityEvent;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
@@ -18,6 +19,12 @@ import io.reactivex.Observable;
 public class OperateActCompatDelegate {
     RxAppCompatActivity rxAppCompatActivity;
     protected static StateManager mStateManager;
+    protected Toastor toastor;
+
+
+    public Toastor getToastor() {
+        return toastor;
+    }
 
     public StateManager getStateManager() {
         return mStateManager;
@@ -25,6 +32,7 @@ public class OperateActCompatDelegate {
 
     public OperateActCompatDelegate(RxAppCompatActivity rxAppCompatActivity) {
         this.rxAppCompatActivity = rxAppCompatActivity;
+        toastor=new Toastor(rxAppCompatActivity);
     }
     public void setStatsManager(int resId){
         if (resId!=0) {

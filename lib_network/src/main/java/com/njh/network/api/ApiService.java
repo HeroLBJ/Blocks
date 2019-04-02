@@ -1,6 +1,8 @@
 package com.njh.network.api;
 
 
+import com.njh.network.bean.ResponseBean;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -20,7 +22,7 @@ public interface ApiService {
 
     @Headers({DOMAIN_NAME_HEADER}) //如果不需要多个 BaseUrl ,继续使用初始化时传入 Retrofit 中的默认 BaseUrl ,就不要加上 DOMAIN_NAME_HEADER 这个 Header
     @GET("api/weather/city/{city_code}")
-    Observable<Object> get(@Path("city_code") String city_code);
+    Observable<ResponseBean<Object>> get(@Path("city_code") String city_code);
 //    http://t.weather.sojson.com/api/weather/city/+city_code
 //
 //

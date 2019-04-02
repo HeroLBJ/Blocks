@@ -1,9 +1,11 @@
 package com.njh.base.ui.act;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.njh.base.ui.fmt.LoadingFragment;
 import com.njh.base.ui.view.BaseView;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
@@ -17,16 +19,44 @@ public abstract class BaseAct extends RxAppCompatActivity implements BaseView {
     protected ImmersionBar immersionBar;
     protected Unbinder unBinder;
     protected OperateActCompatDelegate operateCompatDelegate;
+    private LoadingFragment loadingFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         operateCompatDelegate=new OperateActCompatDelegate(this);
         unBinder = ButterKnife.bind(this);
+        loadingFragment=new LoadingFragment();
         initStatusBar();
         initBus();
         initData(savedInstanceState);
         setListener();
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void showToast(String msg) {
+        operateCompatDelegate
+                .getToastor()
+                .showToast(msg);
+    }
+
+    @Override
+    public void showLoading() {
+        if (!loadingFragment.isShowing()){
+            loadingFragment.show(getSupportFragmentManager(), "loging");
+        }
+    }
+
+    @Override
+    public void hideLoading() {
+        if (loadingFragment.isShowing()){
+            loadingFragment.dismiss();
+        }
     }
 
     /**
