@@ -21,6 +21,11 @@ public class BaseApp extends Application implements IAppLife {
     public static BaseApp getAppInstance() {
         return instance;
     }
+
+    public static void setInstance(BaseApp instance) {
+        BaseApp.instance = instance;
+    }
+
     private ApplicationDelegate applicationDelegate;
 
     /**
@@ -55,13 +60,20 @@ public class BaseApp extends Application implements IAppLife {
     }
 
     @Override
-    public void onCreate(Application application) {
+    public void onCreate() {
+        super.onCreate();
         instance=this;
         initARouter();
         initAutoSize();
         //日志初始化
         KLog.init(BuildConfig.IS_DEBUG);
     }
+
+    @Override
+    public void onCreate(Application application) {
+
+    }
+
 
     @Override
     public void onTerminate(Application application) {

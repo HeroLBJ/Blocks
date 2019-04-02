@@ -1,8 +1,10 @@
 package com.bocweb.action.ui.act;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.alibaba.fastjson.JSON;
 import com.bocweb.action.R;
 import com.bocweb.action.ui.act.test.actions.HouseAction;
@@ -40,6 +42,14 @@ public class MainActivity extends BaseFluxActivity<HouseStore, HouseAction> {
             }
         },1000);
 
+        tvContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance()
+                        .build("/test/activity4")
+                        .navigation();
+            }
+        });
     }
 
     @Override
