@@ -1,4 +1,4 @@
-package com.njh.common.interceptor;
+package com.bocweb.action.interceptor;
 
 import android.content.Context;
 
@@ -7,13 +7,17 @@ import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
 
+/**
+ * @author niejiahuan
+ */
 @Interceptor(priority = 1, name = "登录拦截器拦截器")
-public class TestInterceptor implements IInterceptor {
+public class LoginInterceptor implements IInterceptor {
     Context mContext;
     @Override
     public void process(Postcard postcard, InterceptorCallback callback) {
         if ("/test/activity4".equals(postcard.getPath())) {
             //添加路径判断
+            callback.onInterrupt(null);
         } else {
             callback.onContinue(postcard);
         }
