@@ -4,29 +4,29 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.bocweb.action.R;
-import com.njh.base.ui.act.BaseAct;
-import com.weavey.loading.lib.LoadingLayout;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.bocweb.action.ui.act.test.actions.HouseAction;
+import com.bocweb.action.ui.act.test.stores.HouseStore;
+import com.njh.common.core.ReqTag;
+import com.njh.common.flux.base.BaseFluxActivity;
+import com.njh.common.flux.stores.Store;
+import com.socks.library.KLog;
 
 /**
  * @author niejiahuan
  */
-public class MainActivity extends BaseAct {
-
-    @BindView(R.id.loading_view)
-    LoadingLayout loadingView;
+public class MainActivity extends BaseFluxActivity<HouseStore, HouseAction> {
 
     @Override
-    public void initBus() {
-
+    protected boolean flux() {
+        return true;
     }
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        ButterKnife.bind(this);
-        loadingView.setStatus(LoadingLayout.Empty);
+        operateCompatDelegate.setStatsManager(R.id.loading_view);
+        operateCompatDelegate.getStateManager().showLoading();
+
+        actionsCreator().getHouseSearch(this,"101030100");
     }
 
     @Override
@@ -64,4 +64,11 @@ public class MainActivity extends BaseAct {
 
     }
 
+    @Override
+    protected void updateView(Store.StoreChangeEvent event) {
+        super.updateView(event);
+        if (event.url.equals(ReqTag.REQ_TAG_GET_HOUSE_SEARCH)){
+            KLog.debug(event.data);
+        }
+    }
 }

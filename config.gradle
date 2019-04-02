@@ -55,8 +55,6 @@ ext {
 
             //加载效果
             "materialish-progress"     : 'com.pnikosis:materialish-progress:1.7',
-            //界面状态界面
-            "loadinglayout"              :'com.lai.weavey:loadinglayout:1.3.1',
             //butterknife
             "butterknife"              :'com.jakewharton:butterknife:10.1.0',
             "butterknife-compiler"     : 'com.jakewharton:butterknife-compiler:10.1.0',

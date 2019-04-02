@@ -1,7 +1,7 @@
 package com.njh.common.flux;
 
 
-import com.bocweb.common.flux.annotation.BindAction;
+import com.njh.common.flux.annotation.BindAction;
 
 import java.lang.annotation.Annotation;
 import java.lang.ref.WeakReference;

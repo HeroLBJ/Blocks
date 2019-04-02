@@ -2,7 +2,6 @@ package com.njh.common;
 
 import com.njh.base.app.BaseApp;
 import com.njh.common.db.manager.GreenDaoManager;
-import com.weavey.loading.lib.LoadingLayout;
 
 /**
  * @author niejiahuan
@@ -18,9 +17,9 @@ public class CommonApp extends BaseApp{
     }
 
     public void setInitUIStutas(){
-        LoadingLayout.getConfig()
-                .setErrorText("出错啦~请稍后重试！")
-                .setEmptyText("暂无数据")
-                .setNoNetworkText("无网络连接，请检查您的网络···");
+//        LoadingLayout.getConfig()
+//                .setErrorText("出错啦~请稍后重试！")
+//                .setEmptyText("暂无数据")
+//                .setNoNetworkText("无网络连接，请检查您的网络···");
     }
 }

@@ -24,6 +24,9 @@ public abstract class BaseAct extends RxAppCompatActivity implements BaseView {
         operateCompatDelegate=new OperateActCompatDelegate(this);
         unBinder = ButterKnife.bind(this);
         initStatusBar();
+        initBus();
+        initData(savedInstanceState);
+        setListener();
     }
 
     /**

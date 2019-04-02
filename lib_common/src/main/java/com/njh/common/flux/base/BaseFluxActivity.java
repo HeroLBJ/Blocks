@@ -1,7 +1,5 @@
 package com.njh.common.flux.base;
 
-import android.os.Bundle;
-
 import com.njh.base.ui.act.BaseAct;
 import com.njh.base.ui.view.BaseView;
 import com.njh.common.flux.actions.ActionsCreator;
@@ -24,11 +22,6 @@ public abstract class BaseFluxActivity<STORE extends Store,CREATER extends Actio
     protected Dispatcher dispatcher;
     private STORE store;
     private CREATER actionCreater;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     /**
      * 是否启用flux模式

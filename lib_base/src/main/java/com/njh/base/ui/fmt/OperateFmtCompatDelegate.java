@@ -3,14 +3,12 @@ package com.njh.base.ui.fmt;
 import android.view.View;
 
 import com.jakewharton.rxbinding2.view.RxView;
-import com.trello.rxlifecycle3.android.ActivityEvent;
-import com.trello.rxlifecycle3.android.FragmentEvent;
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle3.components.support.RxFragment;
-import com.trello.rxlifecycle3.components.support.RxFragmentActivity;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import cn.itsite.statemanager.StateManager;
 import io.reactivex.Observable;
 
 /**
@@ -18,19 +16,24 @@ import io.reactivex.Observable;
  */
 public class OperateFmtCompatDelegate {
     RxFragment rxFragment;
-    RxAppCompatActivity rxAppCompatActivity;
-    RxFragmentActivity rxFragmentActivity;
 
+    StateManager mStateManager;
+
+    public StateManager getStateManager() {
+        return mStateManager;
+    }
     public OperateFmtCompatDelegate(RxFragment rxFragment) {
         this.rxFragment = rxFragment;
     }
 
-    public OperateFmtCompatDelegate(RxAppCompatActivity rxAppCompatActivity) {
-        this.rxAppCompatActivity = rxAppCompatActivity;
+    public void setStatsManager(int resId){
+        if (resId!=0) {
+            setStatsManager(rxFragment.getView().findViewById(resId));
+        }
     }
-
-    public OperateFmtCompatDelegate(RxFragmentActivity rxFragmentActivity) {
-        this.rxFragmentActivity = rxFragmentActivity;
+    public void setStatsManager(@NonNull View view){
+        mStateManager= StateManager.builder(rxFragment.getContext())
+                .build();
     }
 
     public Observable click(View view) {
@@ -55,38 +58,7 @@ public class OperateFmtCompatDelegate {
      * @return
      */
     protected <T extends Object> Observable<T> bindLife(Observable<T> observable) {
-        if (null != rxFragment) {
             return (Observable<T>) observable.compose(rxFragment.bindToLifecycle());
-        } else if (null != rxAppCompatActivity) {
-            return (Observable<T>) observable.compose(rxAppCompatActivity.bindToLifecycle());
-        } else {
-            return (Observable<T>) observable.compose(rxFragmentActivity.bindToLifecycle());
-        }
     }
 
-    /**
-     * 指定事件在哪个生命周期结束
-     *
-     * @param observable
-     * @param event      生命周期
-     * @return
-     */
-    protected <T extends Object> Observable<T> bindUntil(Observable<T> observable, ActivityEvent event) {
-        if (null != rxAppCompatActivity) {
-            return (Observable<T>) observable.compose(rxAppCompatActivity.bindUntilEvent(event));
-        } else {
-            return (Observable<T>) observable.compose(rxFragmentActivity.bindUntilEvent(event));
-        }
-    }
-
-    /**
-     * 指定事件在哪个生命周期结束
-     *
-     * @param observable
-     * @param event      生命周期
-     * @return
-     */
-    protected <T extends Object> Observable<T> bindUntil(Observable<T> observable, FragmentEvent event) {
-        return (Observable<T>) observable.compose(rxFragment.bindUntilEvent(event));
-    }
 }

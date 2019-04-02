@@ -17,13 +17,13 @@ android {
         //正式版本
         release {
             minifyEnabled false//不启用混淆
-            buildConfigField "String", "BASE_URL", "\"api.clife.cn/\""
+            buildConfigField "String", "BASE_URL", "\"http://t.weather.sojson.com/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         //测试版本
         debug {
             minifyEnabled false//不启用混淆
-            buildConfigField "String", "BASE_URL", "\"api.clife.cn/\""
+            buildConfigField "String", "BASE_URL", "\"http://t.weather.sojson.com/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         pre.initWith(release)//拷贝了 release 这一构建类型的所有变量

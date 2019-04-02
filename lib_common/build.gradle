@@ -51,5 +51,5 @@ dependencies {
     api project(':lib_base')
     api rootProject.ext.dependencies["eventbus"]
     api rootProject.ext.dependencies["greendao"]
-    implementation project(':lib_network')
+    api project(':lib_network')
 }

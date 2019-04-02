@@ -8,6 +8,8 @@ import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.NonNull;
+import cn.itsite.statemanager.StateManager;
 import io.reactivex.Observable;
 
 /**
@@ -15,11 +17,25 @@ import io.reactivex.Observable;
  */
 public class OperateActCompatDelegate {
     RxAppCompatActivity rxAppCompatActivity;
+    protected static StateManager mStateManager;
+
+    public StateManager getStateManager() {
+        return mStateManager;
+    }
 
     public OperateActCompatDelegate(RxAppCompatActivity rxAppCompatActivity) {
         this.rxAppCompatActivity = rxAppCompatActivity;
     }
-
+    public void setStatsManager(int resId){
+        if (resId!=0) {
+            setStatsManager(rxAppCompatActivity.findViewById(resId));
+        }
+    }
+    public void setStatsManager(@NonNull View view){
+        mStateManager=StateManager.builder(rxAppCompatActivity)
+                .setContent(view)
+                .build();
+    }
     public Observable click(View view) {
         return throttleFirst(RxView.clicks(view));
     }
